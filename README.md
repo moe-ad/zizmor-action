@@ -75,7 +75,7 @@ jobs:
       actions: read # only needed for private repos
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
 
@@ -110,7 +110,7 @@ jobs:
       actions: read # only needed for private repos
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
 
@@ -198,6 +198,10 @@ See `zizmor`'s [Filtering results] documentation for more information.
 `version` is the version of `zizmor` to use. It must be provided as
 either an exact version (e.g. `v1.7.0`) or the special value `latest`,
 which will always use the latest version of `zizmor`.
+
+> [!NOTE]
+> You can specify `version` with or without the `v` prefix.
+> For example, `v1.7.0` and `1.7.0` are both valid and equivalent.
 
 ### `token`
 
