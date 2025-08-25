@@ -29,6 +29,24 @@ output() {
     echo "${1}=${2}" >> "${GITHUB_OUTPUT}"
 }
 
+zizmor-summary () {
+    format="%-50s%-20s\n"
+    printf "$format" "=========" "================"
+    printf "$format" "File name" "Number of issues"
+    printf "$format" "=========" "================"
+
+    count=0
+    while read no_of_occurence workflow_file; do
+        printf "$format" "$workflow_file" "$no_of_occurence"
+        count=$((count + no_of_occurence))
+    done < <(cat | grep -Eo "[^ /]+/([^ /]+/)?.*\.yml" | sort | uniq -c)
+
+    printf "$format" "=========" "================"
+    printf "$format" "Total" "$count"
+    printf "$format" "=========" "================"
+    printf "\nNote: the summary excludes warning surpressed by zizmor."
+}
+
 installed docker || die "Cannot run this action without Docker"
 
 [[ "${RUNNER_OS}" != "Linux" ]] && warn "Unsupported runner OS: ${RUNNER_OS}"
@@ -78,5 +96,6 @@ docker run \
     "${arguments[@]}" \
     -- \
     ${GHA_ZIZMOR_INPUTS} \
-        | tee "${output}"
+        | tee "${output}" \
+        | zizmor-summary
 
