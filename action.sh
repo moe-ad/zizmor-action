@@ -31,6 +31,11 @@ output() {
 
 zizmor-summary () {
     format="%-50s%-20s\n"
+    
+    printf \\n; printf \\n; printf \\n
+    printf "SUMMARY OF DETECTED ISSUES PER FILE"
+    printf \\n; printf \\n
+
     printf "$format" "=========" "================"
     printf "$format" "File name" "Number of issues"
     printf "$format" "=========" "================"
@@ -95,7 +100,7 @@ docker run \
     "${image}" \
     "${arguments[@]}" \
     -- \
-    ${GHA_ZIZMOR_INPUTS} \
+    ${GHA_ZIZMOR_INPUTS} 2> /dev/null \
         | tee "${output}" \
         | zizmor-summary
 
