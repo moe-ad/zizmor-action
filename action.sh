@@ -32,7 +32,7 @@ output() {
 zizmor-summary () {
     format="%-50s%-20s\n"
     
-    printf \\n; printf \\n; printf \\n
+    printf \\n; printf \\n;
     printf "SUMMARY OF DETECTED ISSUES PER FILE"
     printf \\n; printf \\n
 
