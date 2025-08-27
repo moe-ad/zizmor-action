@@ -104,6 +104,7 @@ docker run \
         | tee "${output}" \
 
 # Output a summary of findings if requested
+echo "${output}"
 cat "${output}"
 # [[ "${GHA_ZIZMOR_SUMMARY}" == "true" ]] && cat "${output}" | zizmor-summary
 
