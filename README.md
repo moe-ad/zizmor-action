@@ -18,6 +18,7 @@ Run [`zizmor`] from GitHub Actions!
   - [`version`](#version)
   - [`token`](#token)
   - [`advanced-security`](#advanced-security)
+  - [`generate-summary`](#generate-summary)
 - [Permissions](#permissions)
 - [Troubleshooting](#troubleshooting)
 
@@ -219,6 +220,14 @@ when [`advanced-security`](#advanced-security) is enabled.
 [Advanced Security] functionality. If set to `false`, `zizmor-action`
 will not upload results to Advanced Security, and will instead
 print them to the console.
+
+### `generate-summary`
+
+*Default*: `false`
+
+`generate-summary` controls whether nicely formatted summary table, showing
+the number of security issues per workflow file, should be added to the
+output logs.
 
 ## Permissions
 
