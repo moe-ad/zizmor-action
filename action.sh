@@ -91,6 +91,7 @@ image="ghcr.io/zizmorcore/zizmor:${GHA_ZIZMOR_VERSION#v}"
 #   as one or more flags.
 #
 # shellcheck disable=SC2086
+set +e
 docker run \
     --rm \
     --volume "${GITHUB_WORKSPACE}:/workspace:ro" \
@@ -101,5 +102,13 @@ docker run \
     "${arguments[@]}" \
     -- \
     ${GHA_ZIZMOR_INPUTS} \
-        | tee "${output}" \
-|| ([[ "${GHA_ZIZMOR_SUMMARY}" == "true" ]] && cat "${output}" | zizmor-summary)
+        | tee "${output}"
+docker_status=$?
+set -e
+
+if [ $docker_status -ne 0 ]; then
+    [[ "${GHA_ZIZMOR_SUMMARY}" == "true" ]] && cat "${output}" | zizmor-summary
+fi
+
+# Exit script with Docker's exit code
+exit $docker_status
