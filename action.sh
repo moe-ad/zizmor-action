@@ -100,7 +100,9 @@ docker run \
     "${image}" \
     "${arguments[@]}" \
     -- \
-    ${GHA_ZIZMOR_INPUTS} 2> /dev/null \
+    ${GHA_ZIZMOR_INPUTS} \
         | tee "${output}" \
-        | zizmor-summary
+
+# Output a summary of findings if requested
+[[ "${GHA_ZIZMOR_SUMMARY}" == "true" ]] && cat "${output}" | zizmor-summary
 

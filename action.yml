@@ -56,6 +56,13 @@ inputs:
       results to the repository's security tab.
     required: false
     default: "true"
+  generate-summary:
+    description: |
+      Whether to output a nicely formatted summary table showing the number
+      of security issues per workflow file.
+
+    required: false
+    default: "false"
 
 runs:
   using: composite
@@ -73,6 +80,7 @@ runs:
         GHA_ZIZMOR_VERSION: ${{ inputs.version }}
         GHA_ZIZMOR_TOKEN: ${{ inputs.token }}
         GHA_ZIZMOR_ADVANCED_SECURITY: ${{ inputs.advanced-security }}
+        GHA_ZIZMOR_SUMMARY: ${{ inputs.generate-summary }}
       shell: bash
 
     - name: Upload SARIF file to GitHub Advanced Security
