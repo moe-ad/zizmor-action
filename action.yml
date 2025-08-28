@@ -83,9 +83,9 @@ runs:
         GHA_ZIZMOR_SUMMARY: ${{ inputs.generate-summary }}
       shell: bash
 
-    - name: Upload SARIF file to GitHub Advanced Security
-      uses: github/codeql-action/upload-sarif@76621b61decf072c1cee8dd1ce2d2a82d33c17ed # v3.29.5
-      if: ${{ inputs.advanced-security == 'true' }}
-      with:
-        sarif_file: ${{ steps.run-zizmor.outputs.sarif-file }}
-        category: zizmor
+    # - name: Upload SARIF file to GitHub Advanced Security
+    #   uses: github/codeql-action/upload-sarif@76621b61decf072c1cee8dd1ce2d2a82d33c17ed # v3.29.5
+    #   if: ${{ inputs.advanced-security == 'true' }}
+    #   with:
+    #     sarif_file: ${{ steps.run-zizmor.outputs.sarif-file }}
+    #     category: zizmor
